@@ -83,12 +83,12 @@ func (s *Service) AddPost(f interface{}) {
 	s.post = addToChain(f, s.post)
 }
 
-// Service satisfies the http.Handler interface.
+// ServeHTTP: Service satisfies the http.Handler interface.
 func (s *Service) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	s.ServeHTTPInContext(NewSiestaContext(), w, r)
 }
 
-// ServiceHTTPInContext serves an HTTP request within the Context c.
+// ServeHTTPInContext: serves an HTTP request within the Context c.
 // A Service will run through both of its internal chains, quitting
 // when requested.
 func (s *Service) ServeHTTPInContext(c Context, w http.ResponseWriter, r *http.Request) {
